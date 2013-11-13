@@ -25,9 +25,9 @@ int main ( int argc, char *argv[] ){
         }
         else 
         {
-            struct DOS_Header h;			
-			readDOS_Header(f,&h);
-			printDOS_Header(&h);
+            struct COFFHeader c;			
+			readCOFFHeader(f,&c);
+			printCOFFHeader(&c);
         }
     }
     return 1;

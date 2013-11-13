@@ -31,7 +31,9 @@ struct DOS_Header
      long  e_lfanew;
  };
   
- #pragma pack(1)
+#define PEHEADER_SIZE 4 
+ 
+#pragma pack(1)
  struct COFFHeader
  {
     short Machine;
@@ -138,7 +140,6 @@ struct IMAGE_RESOURCE_DATA_ENTRY
         long CodePage;
         long Reserved;
 };
-
  
 // Section Flags
 

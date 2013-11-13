@@ -10,6 +10,6 @@
 
 
 void printDOS_Header(struct DOS_Header *h);  
-
+void printCOFFHeader(struct COFFHeader *c);  
 
 #endif
