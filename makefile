@@ -1,2 +1,15 @@
-peinfo: peinfo.c peread.c peprint.c 
-	gcc -o peinfo peinfo.c peread.c peprint.c -I.
+SRC	+=	peinfo.c \
+		peread.c \
+		peprint.c
+
+peinto.exe:	$(SRC)
+	gcc -I. -o $@ $(SRC)
+	
+all: peinto.exe
+	
+clean:
+	rm -f *.o *.exe
+	
+.DEFAULT: all
+
+.PHONEY: clean
