@@ -1,8 +1,8 @@
-SRC	+=	peinfo.c \
+SRC +=  peinfo.c \
 		peread.c \
 		peprint.c
 
-peinto.exe:	$(SRC)
+peinto.exe: $(SRC)
 	gcc -I. -o $@ $(SRC)
 	
 all: peinto.exe
