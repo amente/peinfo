@@ -7,7 +7,8 @@
 #ifndef __EXEINFO__
 #define __EXEINFO__
 
-typedef struct  
+#pragma pack(1)
+struct DOS_Header 
  {
      char signature[2];
      short lastsize;
@@ -16,11 +17,11 @@ typedef struct
      short hdrsize;
      short minalloc;
      short maxalloc;
-     void *ss;
-     void *sp;
+     short ss;
+     short sp;
      short checksum;
-     void *ip;
-     void *cs;
+     short ip;
+     short cs;
      short relocpos;
      short noverlay;
      short reserved1[4];
@@ -28,9 +29,10 @@ typedef struct
      short oem_info;
      short reserved2[10];
      long  e_lfanew;
- }DOS_Header;
- 
- typedef struct 
+ };
+  
+ #pragma pack(1)
+ struct COFFHeader
  {
     short Machine;
     short NumberOfSections;
@@ -39,7 +41,7 @@ typedef struct
     long NumberOfSymbols;
     short SizeOfOptionalHeader;
     short Characteristics;
- }COFFHeader;
+ };
  
  typedef struct
  { 
@@ -47,8 +49,8 @@ typedef struct
     long Size;
  }data_directory; 
  
- 
- typedef struct 
+ #pragma pack(1)
+ struct PEOptHeader 
  {
     short signature; //decimal number 267.
     char MajorLinkerVersion; 
@@ -81,9 +83,10 @@ typedef struct
     long LoaderFlags;
     long NumberOfRvaAndSizes;
     data_directory DataDirectory[16];     //Can have any number of elements, matching the number in NumberOfRvaAndSizes.
- }PEOptHeader;                                       //However, it is always 16 in PE files. 
+ };                                       //However, it is always 16 in PE files. 
  
- typedef struct {
+struct IMAGE_EXPORT_DIRECTORY 
+{
         long Characteristics;
         long TimeDateStamp;
         short MajorVersion;
@@ -95,22 +98,24 @@ typedef struct
         long *AddressOfFunctions;
         long *AddressOfNames;
         long *AddressOfNameOrdinals;
-}IMAGE_EXPORT_DIRECTORY;
+};
 
-typedef struct {
+struct IMAGE_IMPORT_DESCRIPTOR
+{
         long *OriginalFirstThunk;
         long TimeDateStamp;
         long ForwarderChain;
         long Name;
         long *FirstThunk;
-}IMAGE_IMPORT_DESCRIPTOR;
+};
 
-typedef struct {
+struct IMAGE_IMPORT_BY_NAME
+{
         short Hint;
         char Name[1];
-}IMAGE_IMPORT_BY_NAME ;
+};
  
-typedef struct 
+struct IMAGE_RESOURCE_DIRECTORY
 {
         long Characteristics;
         long TimeDateStamp;
@@ -118,21 +123,21 @@ typedef struct
         short MinorVersion;
         short NumberOfNamedEntries;
         short NumberOfIdEntries;
-}IMAGE_RESOURCE_DIRECTORY;
+};
 
-typedef struct
+struct IMAGE_RESOURCE_DIRECTORY_ENTRY
 {
         long NameId;
         long *Data;
-} IMAGE_RESOURCE_DIRECTORY_ENTRY;
+} ;
 
-typedef struct 
+struct IMAGE_RESOURCE_DATA_ENTRY
 {
         long *Data;
         long Size;
         long CodePage;
         long Reserved;
-}IMAGE_RESOURCE_DATA_ENTRY;
+};
 
  
 // Section Flags

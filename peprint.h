@@ -9,7 +9,7 @@
 #define __PEPRINT__
 
 
-void printDOS_Header(DOS_Header *h);  
+void printDOS_Header(struct DOS_Header *h);  
 
 
 #endif

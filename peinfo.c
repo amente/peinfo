@@ -25,7 +25,7 @@ int main ( int argc, char *argv[] ){
         }
         else 
         {
-            DOS_Header h;
+            struct DOS_Header h;			
 			readDOS_Header(f,&h);
 			printDOS_Header(&h);
         }

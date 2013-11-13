@@ -12,6 +12,6 @@
 /**
 * Reads the DOS Header from a file stream assumes it is a valid PE file
 */
-void readDOS_Header(FILE *f , DOS_Header *h);
+void readDOS_Header(FILE *f , struct DOS_Header *h);
 
 #endif
